@@ -1,19 +1,26 @@
 <section class="opening-hours">
     <div class="container">
-        <h2>Horário de Funcionamento</h2>
-        <ul class="hours-list">
-            <li>
-                <span class="day">Segunda a Sexta:</span>
-                <span class="time">08:00 - 20:00</span>
-            </li>
-            <li>
-                <span class="day">Sábado:</span>
-                <span class="time">09:00 - 18:00</span>
-            </li>
-            <li>
-                <span class="day">Domingo:</span>
-                <span class="time">Fechado</span>
-            </li>
-        </ul>
+        <div class="left-text">
+            <h2>Bem vindo ao <span>Bella Mulher</span></h2>
+            <p>No Bella Mulher, cada detalhe foi pensado para proporcionar uma experiência única de cuidado e bem-estar. Agende seu horário e venha relaxar enquanto realçamos sua beleza natural.</p>
+            <a class="read-more" href="#">READ MORE</a>
+        </div>
+
+        <div class="center-image">
+            <img src="/hair-woman.jpg" alt="Hair Model" />
+        </div>
+
+        <div class="right-hours">
+            <div class="opening-hours-box">
+                <h2 class="title">Horários de Atendimento</h2>
+
+                @for (item of hours; track item) {
+                <div class="hour-row">
+                    <div class="day" [class.closed]="item.isClosed">{{ item.day }}</div>
+                    <div class="time">{{ item.time }}</div>
+                </div>
+                }
+            </div>
+        </div>
     </div>
 </section>
