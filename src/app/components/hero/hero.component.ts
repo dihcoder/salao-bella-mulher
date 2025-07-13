@@ -1,8 +1,9 @@
 import { Component, HostListener, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { CarouselComponent } from "../carousel/carousel.component";
 
 @Component({
 	selector: 'app-hero',
-	imports: [],
+	imports: [CarouselComponent],
 	templateUrl: './hero.component.html',
 	styleUrl: './hero.component.scss'
 })

@@ -1,0 +1,14 @@
+<div class="embla">
+    <div #emblaViewport class="embla__viewport">
+        <div class="embla__container">
+            @for (image of imageUrls; track image) {
+            <div class="embla__slide">
+                <div #slideImage style="background-image: url({{image}});"></div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <button class="embla__button prev" (click)="scrollPrev()">&lt;</button>
+    <button class="embla__button next" (click)="scrollNext()">&gt;</button>
+</div>

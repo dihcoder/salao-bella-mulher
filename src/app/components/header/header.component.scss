@@ -60,6 +60,27 @@
         }
     }
 
+    .social-media-links {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        svg {
+            fill: var(--color-dark-400);
+            transition: 200ms ease-in-out;
+            font-size: 1.2rem;
+
+            &:hover {
+                fill: var(--color-primary);
+                transform: translateY(10%) scale(104%);
+            }
+        }
+    }
+
 
     .menu-toggle {
         display: none;
@@ -133,6 +154,10 @@
                 left: calc(100vw - var(--nav-menu-width));
                 transition: left 200ms ease-in-out 100ms;
             }
+        }
+
+        .social-media-links {
+            right: 70px;
         }
 
         .menu-toggle {
