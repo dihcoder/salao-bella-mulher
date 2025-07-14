@@ -8,7 +8,7 @@
                 <img [src]="service.icon" [alt]="service.name" class="service-icon" />
                 <h3 class="service-name">{{ service.name }}</h3>
                 <p class="service-description">{{ service.description }}</p>
-                <div class="service-price">${{ service.price }}</div>
+                <div class="service-price">{{ service.price | currency:'BRL':'symbol' }}</div>
             </div>
             }
         </div>
