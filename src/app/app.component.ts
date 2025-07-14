@@ -6,10 +6,11 @@ import { HeaderComponent } from "./components/header/header.component";
 import { HeroComponent } from "./components/hero/hero.component";
 import { OpeningHoursComponent } from "./components/opening-hours/opening-hours.component";
 import { FeaturedServicesComponent } from "./components/featured-services/featured-services.component";
+import { TestimonialSectionComponent } from "./components/testimonial-section/testimonial-section.component";
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, HeaderComponent, HeroComponent, OpeningHoursComponent, FeaturedServicesComponent],
+	imports: [RouterOutlet, HeaderComponent, HeroComponent, OpeningHoursComponent, FeaturedServicesComponent, TestimonialSectionComponent],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss'
 })
