@@ -1,0 +1,16 @@
+<section class="featured-services">
+    <div class="container">
+        <h2 class="section-title">Serviços em Destaque</h2>
+
+        <div class="services-grid">
+            @for (service of services; track service.name) {
+            <div class="service-card">
+                <img [src]="service.icon" [alt]="service.name" class="service-icon" />
+                <h3 class="service-name">{{ service.name }}</h3>
+                <p class="service-description">{{ service.description }}</p>
+                <div class="service-price">${{ service.price }}</div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

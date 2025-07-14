@@ -5,10 +5,11 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./components/header/header.component";
 import { HeroComponent } from "./components/hero/hero.component";
 import { OpeningHoursComponent } from "./components/opening-hours/opening-hours.component";
+import { FeaturedServicesComponent } from "./components/featured-services/featured-services.component";
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, HeaderComponent, HeroComponent, OpeningHoursComponent],
+	imports: [RouterOutlet, HeaderComponent, HeroComponent, OpeningHoursComponent, FeaturedServicesComponent],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss'
 })
