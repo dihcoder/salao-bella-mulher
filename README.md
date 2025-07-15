@@ -4,7 +4,7 @@
 
 A modern and responsive institutional website for the **Bella Mulher** beauty salon, built with **Angular**, **TypeScript**, and **SCSS**, focusing on aesthetics, usability, and strong brand identity.
 
-> 🌐 **Live demo coming soon**
+> 🌐 Live demo available at: [https://bella-mulher.netlify.app](https://bella-mulher.netlify.app)
 
 <br/>
 

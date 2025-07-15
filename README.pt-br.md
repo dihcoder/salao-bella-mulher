@@ -4,7 +4,7 @@
 
 Um site institucional moderno e responsivo para o salão de beleza **Bella Mulher**, desenvolvido com **Angular**, **TypeScript** e **SCSS**, com foco em estética, usabilidade e identidade visual.  
 
-> 🌐 **Live demo em breve**
+> 🌐 Acesse a demonstração online em: [https://bella-mulher.netlify.app](https://bella-mulher.netlify.app)
 
 <br/>
 
