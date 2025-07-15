@@ -1,59 +1,169 @@
-# SalaoBellaMulher
+> 📘 Este README também está disponível em [Português 🇧🇷](./README.pt-br.md)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+# 💇‍♀️ Bella Mulher – Institutional Website
 
-## Development server
+A modern and responsive institutional website for the **Bella Mulher** beauty salon, built with **Angular**, **TypeScript**, and **SCSS**, focusing on aesthetics, usability, and strong brand identity.
 
-To start a local development server, run:
+> 🌐 **Live demo coming soon**
+
+<br/>
+
+![Bella Mulher Preview](website-preview.png)
+
+---
+
+## ✨ Features
+
+- 🌟 Image carousel with **parallax** effect
+- 🧭 Header with interactive navigation and active section highlighting
+- ⏰ Dynamically rendered opening hours
+- 💅 Highlighted services with icons and pricing
+- 💬 Testimonial section with image and styled quote box
+- 🎥 Institutional video in a floating modal
+- 📬 Footer with useful links, social icons, and newsletter form
+
+---
+
+## 🧠 Tech Stack
+
+| Technology     | Purpose                            |
+|----------------|------------------------------------|
+| Angular        | SPA framework (Standalone Components) |
+| TypeScript     | Type-safe logic and development     |
+| SCSS           | Modular and responsive styling      |
+| Embla Carousel | Animated slider with event support  |
+| HTML5/CSS3     | Semantic structure and layout       |
+
+---
+
+## 🗂️ Project Structure
+
+```
+
+src/
+├── app/
+│   ├── components/
+│   │   ├── carousel/
+│   │   ├── featured-services/
+│   │   ├── footer/
+│   │   ├── header/
+│   │   ├── hero/
+│   │   ├── opening-hours/
+│   │   ├── testimonial-section/
+│   │   └── video-highlight/
+│   ├── services/
+│   │   └── scroll.service.ts
+│   ├── app.component.html
+│   ├── app.component.scss
+│   ├── app.component.ts
+│   ├── app.config.ts
+│   └── app.routes.ts
+├── index.html
+├── main.ts
+└── styles.scss
+
+````
+
+---
+
+## 🧩 Implemented Components
+
+### ✅ `HeaderComponent`
+- Sticky header with smooth navigation through page sections.
+- Highlights the currently active menu item.
+- Responsive hamburger menu with `aria-expanded` and `.mobile-visible`.
+- Social icons with `hover` animation.
+
+### ✅ `HeroComponent`
+- Large stylized title using `clamp()` and a classic serif font.
+- Integrates `CarouselComponent` as a dynamic background with depth effect.
+- Call-to-action button: **Book Now!**
+
+### ✅ `CarouselComponent`
+- Uses **Embla Carousel** for auto-sliding and smooth transitions.
+- Manual prev/next buttons for user control.
+- **Parallax effect** based on the browser's `scrollY`.
+
+### ✅ `OpeningHoursComponent`
+- Three-column layout: intro text, central image, and dynamic schedule.
+- Hours rendered with `*ngFor`, highlighting closed days.
+- Central image includes `hover: scale(1.1)` animation.
+
+### ✅ `FeaturedServicesComponent`
+- Service cards with SVG icons, descriptions, and formatted BRL prices.
+- Flexible and responsive grid with `hover` transitions.
+
+### ✅ `TestimonialSectionComponent`
+- Testimonial box over a client image with styled quotation and author.
+- Responsive layout adapts for smaller screens with media queries.
+- Elegant typography and subtle shadows for emphasis.
+
+### ✅ `VideoHighlightComponent`
+- Video banner with play button.
+- Embedded YouTube video in modal (`iframe`).
+- Controlled using `ngIf`, `DomSanitizer`, and click events.
+
+### ✅ `FooterComponent`
+- Three main columns: About, Quick Links, and Newsletter form.
+- Email input and send button styled for clarity.
+- Bottom section with copyright and social links.
+
+---
+
+## 🧮 Utility Services
+
+### 🧩 `ScrollService`
+- Singleton service (`providedIn: 'root'`) with `throttle()` method to limit execution rate — useful for effects like parallax or scroll tracking.
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js (v19+)
+- Angular CLI (v19+ recommended)
+
+### Steps
 
 ```bash
+# Clone the repository
+git clone https://github.com/dihcoder/salao-bella-mulher.git
+
+# Enter the project folder
+cd salao-bella-mulher
+
+# Install dependencies
+npm install
+
+# Run locally
 ng serve
-```
+````
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Visit `http://localhost:4200/` to see the site in action.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 💡 Possible Future Improvements
 
-```bash
-ng generate component component-name
-```
+* Integration with a real booking form (Firebase or Supabase)
+* SEO and social sharing metadata
+* Lazy loading of images and videos
+* Multi-language support (i18n)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 👨‍💻 Author
 
-## Building
+Developed with ❤️ by **Diego Silva**
 
-To build the project run:
+> *Aspiring web developer passionate about design and digital experiences.*
 
-```bash
-ng build
-```
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square\&logo=linkedin)](https://linkedin.com/in/diego-md)
+[![Portfolio](https://img.shields.io/badge/-Portfolio-black?style=flat-square\&logo=firefox-browser)](https://dihcoder.github.io/personal-website/)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 📄 License
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is licensed under the **MIT License**. See the `LICENSE` file for more details.
