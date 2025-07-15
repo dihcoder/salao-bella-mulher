@@ -1,0 +1,18 @@
+<div class="video-highlight" [ngClass]="{ 'modal-open': isModalOpen }">
+    <div class="overlay">
+        <h2 class="title">Conheça Nossos Serviços Incríveis</h2>
+        <button class="play-button" (click)="openModal()" aria-label="Assistir vídeo">
+            <span>&#9658;</span>
+        </button>
+    </div>
+
+    <!-- Modal de vídeo -->
+    <div class="video-modal" *ngIf="isModalOpen">
+        <div class="backdrop" (click)="closeModal()" aria-label="Fechar modal"></div>
+        <div class="video-container">
+            <button class="close-btn" (click)="closeModal()" aria-label="Fechar vídeo">✕</button>
+            <iframe width="100%" height="100%" [src]="videoUrl" frameborder="0" allowfullscreen
+                title="Vídeo institucional"></iframe>
+        </div>
+    </div>
+</div>
