@@ -1,0 +1,100 @@
+.site-footer {
+    background-color: var(--color-dark-100);
+    color: var(--color-dark-600);
+    padding: 4rem 2rem 2rem;
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .footer-column {
+        flex: 1 1 250px;
+
+        h4 {
+            color: var(--color-light-100);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 0.5rem;
+
+                a {
+                    color: var(--color-dark-600);
+                    text-decoration: none;
+                    transition: color 0.3s;
+
+                    &:hover {
+                        color: var(--color-primary);
+                    }
+                }
+            }
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+
+            input {
+                padding: 0.6rem;
+                border: 1px solid #444;
+                flex: 1;
+                background: transparent;
+                color: var(--color-light-100);
+            }
+
+            button {
+                background-color: var(--color-primary);
+                border: none;
+                padding: 0.6rem 1rem;
+                color: var(--color-dark-100);
+                font-weight: bold;
+                cursor: pointer;
+                transition: background 0.3s;
+
+                &:hover {
+                    filter: contrast(150%);
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 2rem;
+
+        .social-icons {
+            margin-bottom: 1rem;
+
+            a {
+                color: #ccc;
+                margin: 0 0.5rem;
+                font-size: 1.2rem;
+
+                &:hover {
+                    color: #84cc16;
+                }
+            }
+        }
+
+        p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+    }
+}
