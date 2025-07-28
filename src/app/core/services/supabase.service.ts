@@ -9,11 +9,11 @@ export class SupabaseService {
 	private supabase: SupabaseClient;
 
 	constructor() {
-		const environment = {SUPABASE_URL: '', SUPABASE_ANON_KEY: ''}
+		// const environment = {SUPABASE_URL: '', SUPABASE_ANON_KEY: ''}
 
 		this.supabase = createClient(
-			environment.SUPABASE_URL,
-			environment.SUPABASE_ANON_KEY
+			process.env['SUPABASE_URL']!,
+			process.env['SUPABASE_ANON_KEY']!
 		);
 	}
 
