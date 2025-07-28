@@ -1,149 +1,51 @@
 import { Injectable } from '@angular/core';
-import { SupabaseService } from './supabase.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Booking, Service } from '../../shared/models/booking.model';
-import { Observable, from } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class BookingService {
-    constructor(private supabase: SupabaseService) { }
+  private baseUrl = '/.netlify/functions';
 
-    // Serviços
-    getServices(): Observable<Service[]> {
-        return from(
-            this.supabase.client
-                .from('services')
-                .select('*')
-                .order('name')
-                .then(({ data, error }) => {
-                    if (error) throw error;
-                    return data || [];
-                })
-        );
-    }
+  constructor(private http: HttpClient) {}
 
+  // Serviços
+  getServices(): Observable<Service[]> {
+    return this.http.get<Service[]>(`${this.baseUrl}/services`);
+  }
 
-    addService(service: Omit<Service, 'id'>): Observable<Service> {
-        return from(
-            this.supabase.client
-                .from('services')
-                .insert([service])
-                .select()
-                .single()
-                .then(({ data, error }) => {
-                    if (error) throw error;
-                    return data;
-                })
-        );
-    }
+  addService(service: Omit<Service, 'id'>): Observable<Service> {
+    return this.http.post<Service>(`${this.baseUrl}/services`, service);
+  }
 
-    updateService(id: string, service: Partial<Service>): Observable<Service> {
-        return from(
-            this.supabase.client
-                .from('services')
-                .update(service)
-                .eq('id', id)
-                .select()
-                .single()
-                .then(({ data, error }) => {
-                    if (error) throw error;
-                    return data;
-                })
-        );
-    }
+  updateService(id: string, service: Partial<Service>): Observable<Service> {
+    return this.http.put<Service>(`${this.baseUrl}/services?id=${id}`, service);
+  }
 
-    deleteService(id: string): Observable<void> {
-        return from(
-            this.supabase.client
-                .from('services')
-                .delete()
-                .eq('id', id)
-                .then(({ error }) => {
-                    if (error) throw error;
-                })
-        );
-    }
+  deleteService(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/services?id=${id}`);
+  }
 
-    // Agendamentos
-    getBookings(): Observable<Booking[]> {
-        return from(
-            this.supabase.client
-                .from('bookings')
-                .select(`
-          *,
-          service:services(*)
-        `)
-                .order('booking_date')
-                .order('booking_time')
-                .then(({ data, error }) => {
-                    if (error) throw error;
-                    return data || [];
-                })
-        );
-    }
+  // Agendamentos
+  getBookings(): Observable<Booking[]> {
+    return this.http.get<Booking[]>(`${this.baseUrl}/bookings`);
+  }
 
-    createBooking(booking: Omit<Booking, 'id'>): Observable<Booking> {
-        return from(
-            this.supabase.client
-                .from('bookings')
-                .insert([booking])
-                .select(`
-          *,
-          service:services(*)
-        `)
-                .single()
-                .then(({ data, error }) => {
-                    if (error) throw error;
-                    return data;
-                })
-        );
-    }
+  createBooking(booking: Omit<Booking, 'id'>): Observable<Booking> {
+    return this.http.post<Booking>(`${this.baseUrl}/bookings`, booking);
+  }
 
-    updateBooking(id: string, booking: Partial<Booking>): Observable<Booking> {
-        return from(
-            this.supabase.client
-                .from('bookings')
-                .update(booking)
-                .eq('id', id)
-                .select(`
-          *,
-          service:services(*)
-        `)
-                .single()
-                .then(({ data, error }) => {
-                    if (error) throw error;
-                    return data;
-                })
-        );
-    }
+  updateBooking(id: string, booking: Partial<Booking>): Observable<Booking> {
+    return this.http.put<Booking>(`${this.baseUrl}/bookings?id=${id}`, booking);
+  }
 
-    deleteBooking(id: string): Observable<void> {
-        return from(
-            this.supabase.client
-                .from('bookings')
-                .delete()
-                .eq('id', id)
-                .then(({ error }) => {
-                    if (error) throw error;
-                })
-        );
-    }
+  deleteBooking(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/bookings?id=${id}`);
+  }
 
-    getBookingsByDate(date: string): Observable<Booking[]> {
-        return from(
-            this.supabase.client
-                .from('bookings')
-                .select(`
-          *,
-          service:services(*)
-        `)
-                .eq('booking_date', date)
-                .order('booking_time')
-                .then(({ data, error }) => {
-                    if (error) throw error;
-                    return data || [];
-                })
-        );
-    }
+  getBookingsByDate(date: string): Observable<Booking[]> {
+    return this.http.get<Booking[]>(`${this.baseUrl}/bookings?booking_date=${date}`);
+  }
 }
