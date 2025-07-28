@@ -1,0 +1,90 @@
+<div class="admin-container">
+    <!-- <header class="admin-header">
+        <h1>Área Administrativa</h1>
+        <nav class="admin-nav">
+            <a routerLink="/admin" class="nav-link active">Dashboard</a>
+            <a routerLink="/admin/services" class="nav-link">Gerenciar Serviços</a>
+            <a routerLink="/booking" class="nav-link">Área do Cliente</a>
+        </nav>
+    </header> -->
+
+    <div class="dashboard-content">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Agendamentos Hoje</h3>
+                <div class="stat-number">{{todayBookings.length}}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pendentes</h3>
+                <div class="stat-number">{{pendingBookings.length}}</div>
+            </div>
+            <div class="stat-card">
+                <h3>Confirmados</h3>
+                <div class="stat-number">{{confirmedBookings.length}}</div>
+            </div>
+        </div>
+
+        <div class="bookings-section">
+            <h2>Agendamentos</h2>
+
+            <div class="filter-bar">
+                <input type="date" [(ngModel)]="selectedDate" (change)="filterByDate()" class="date-filter">
+                <select [(ngModel)]="statusFilter" (change)="filterByStatus()" class="status-filter">
+                    <option value="">Todos os status</option>
+                    <option value="pending">Pendente</option>
+                    <option value="confirmed">Confirmado</option>
+                    <option value="completed">Concluído</option>
+                    <option value="cancelled">Cancelado</option>
+                </select>
+            </div>
+
+            <div class="bookings-table">
+                <div class="table-header">
+                    <div>Cliente</div>
+                    <div>Serviço</div>
+                    <div>Data/Hora</div>
+                    <div>Status</div>
+                    <div>Ações</div>
+                </div>
+
+                <div *ngFor="let booking of filteredBookings" class="table-row">
+                    <div class="client-info">
+                        <div class="client-name">{{booking.client_name}}</div>
+                        <div class="client-contact">{{booking.client_phone}}</div>
+                        <div class="client-contact">{{booking.client_email}}</div>
+                    </div>
+
+                    <div class="service-info">
+                        <div class="service-name">{{booking.service?.name}}</div>
+                        <div class="service-price">R$ {{booking.service?.price | number:'1.2-2'}}</div>
+                        <div class="service-duration">{{booking.service?.duration}}min</div>
+                    </div>
+
+                    <div class="datetime-info">
+                        <div class="booking-date">{{booking.booking_date | date:'dd/MM/yyyy'}}</div>
+                        <div class="booking-time">{{booking.booking_time}}</div>
+                    </div>
+
+                    <div class="status-info">
+                        <span class="status-badge" [class]="'status-' + booking.status">
+                            {{getStatusLabel(booking.status)}}
+                        </span>
+                    </div>
+
+                    <div class="actions">
+                        <select [value]="booking.status" (change)="updateBookingStatus(booking.id, $event)"
+                            class="status-select">
+                            <option value="pending">Pendente</option>
+                            <option value="confirmed">Confirmado</option>
+                            <option value="completed">Concluído</option>
+                            <option value="cancelled">Cancelado</option>
+                        </select>
+                        <button (click)="deleteBooking(booking.id)" class="btn btn-danger">
+                            Excluir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

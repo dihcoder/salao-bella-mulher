@@ -1,0 +1,105 @@
+<div class="container">
+
+    @if (state === 'greeting-user') {
+    <div class="first-access">
+        <div class="greeting-container greeting-anim">
+            <h1>Obrigado por confiar em meu trabalho! 😊</h1>
+            <p>Estou feliz por realizar este projeto com você.</p>
+        </div>
+    </div>
+    }
+
+    @if (state === 'fill-master-key' || state === 'fill-master-key--out') {
+    <div class="first-access">
+        <div [ngClass]="{'fade-out-anim': state === 'fill-master-key--out', 'fade-in-anim': state === 'fill-master-key'}"
+            class="master-key-container fade-in-anim">
+            <h2>Vamos Começar!</h2>
+            <p>Para ativar seu acesso como administrador, <strong>insira a chave mestra que você recebeu</strong>.</p>
+            <div *ngIf="successMessage" class="alert alert-success">
+                {{successMessage}}
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-error">
+                {{errorMessage}}
+            </div>
+            <form [formGroup]="masterKeyForm" (ngSubmit)="onMasterKeySubmit()">
+                <div class="form-group master-key-input">
+                    <label for="masterKeyInput" class="sr-only">Chave de acesso</label>
+                    <input maxlength="21" required placeholder="Insira a chave aqui ..." formControlName="master_key"
+                        id="masterKeyInput" type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn continue-btn" [disabled]="!masterKeyForm.valid">
+                    Prosseguir
+                    <!-- {{isFirstAccessDataValid ? 'Cadastrar' : 'Prosseguir'}} -->
+                </button>
+            </form>
+        </div>
+    </div>
+    }
+
+    @if (state === 'register-admin') {
+    <div class="first-access fade-in-anim">
+        <h2>Cadastro de Administrador</h2>
+        <p>Agora, vamos cadastrar você como administrador do site.</p>
+        <p>Preencha os campos abaixo com seu nome completo, email e uma senha de sua preferência.</p>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit()">
+            <div class="form-group">
+                <label for="fullNameInput" class="sr-only">Nome completo</label>
+                <input required placeholder="Seu nome completo" formControlName="full_name" id="fullNameInput"
+                    type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email" class="sr-only">Email</label>
+                <input formControlName="email" placeholder="Seu email" id="email" type="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="sr-only">Senha</label>
+                <input formControlName="password" placeholder="Senha" id="password" type="password"
+                    class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword" class="sr-only">Confirmar senha</label>
+                <input formControlName="confirm_password" placeholder="Repita a senha" id="confirmPassword"
+                    type="password" class="form-control">
+            </div>
+            <button type="submit" class="btn continue-btn" [disabled]="!registerForm.valid">
+                Cadastrar
+                <!-- {{isFirstAccessDataValid ? 'Cadastrar' : 'Prosseguir'}} -->
+            </button>
+        </form>
+    </div>
+    }
+
+    @if (state === 'login') {
+    <div class="login-container">
+        <h2>Login</h2>
+        <p>Faça login para continuar.</p>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()">
+            <div class="form-group">
+                <label for="email" class="sr-only">Email</label>
+                <input formControlName="email" placeholder="Seu email" id="email" type="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="sr-only">Senha</label>
+                <input formControlName="password" placeholder="Senha" id="password" type="password"
+                    class="form-control">
+            </div>
+            <button type="submit" class="btn continue-btn" [disabled]="!registerForm.valid">
+                Cadastrar
+                <!-- {{isFirstAccessDataValid ? 'Cadastrar' : 'Prosseguir'}} -->
+            </button>
+        </form>
+    </div>
+    }
+</div>
+
+<!--
+    <header class="header">
+        <h1>Salão Bella Mulher</h1>
+        <p>Agende seu serviço conosco</p>
+    </header>
+    <div class="admin-link">
+        <a href="/admin" class="btn btn-secondary">Área Administrativa</a>
+    </div>
+-->

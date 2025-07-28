@@ -1,0 +1,10 @@
+<h1>Obrigado por confiar em nosso trabalho!</h1>
+<p>Estamos felizes por iniciar este projeto com você. Para ativar seu acesso como administrador, insira a chave exclusiva que você recebeu.</p>
+
+<form (ngSubmit)="register()">
+  <input placeholder="Nome completo" [(ngModel)]="name" name="name" required />
+  <input placeholder="E-mail" [(ngModel)]="email" name="email" type="email" required />
+  <input placeholder="Senha" [(ngModel)]="password" name="password" type="password" required />
+  <input placeholder="Chave de Acesso" [(ngModel)]="accessKey" name="accessKey" required />
+  <button type="submit">Ativar Acesso</button>
+</form>

@@ -1,0 +1,94 @@
+<div class="container">
+    <h2 class="section-title">Novo Agendamento</h2>
+    <p>Agende seu serviço conosco</p>
+    <div class="grid">
+        <div class="left">
+            <div class="booking-form">
+                <!-- <h2>Novo Agendamento</h2>
+      <p class="text-gray-600 mb-6">Escolha o melhor dia e hora para você</p> -->
+
+                <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="client_name" class="sr-only">Nome Completo</label>
+                        <input placeholder="Seu nome completo" id="client_name" type="text"
+                            formControlName="client_name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="client_phone" class="sr-only">Telefone</label>
+                        <input id="client_phone" type="tel" formControlName="client_phone" class="form-control"
+                            placeholder="Telefone (WhatsApp)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="client_email" class="sr-only">Email</label>
+                        <input placeholder="Email (*opcional)" id="client_email" type="email"
+                            formControlName="client_email" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service_id" class="sr-only">Serviço</label>
+                        <select id="service_id" formControlName="service_id" class="form-control" required>
+                            <option value="">Selecione um serviço</option>
+                            <option *ngFor="let service of services" [value]="service.id">
+                                {{service.name}} - R$ {{service.price | number:'1.2-2'}} ({{service.duration}}min)
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking_date" class="sr-only">Data</label>
+                            <input id="booking_date" type="date" formControlName="booking_date" class="form-control"
+                                [min]="minDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="booking_time" class="sr-only">Horário</label>
+                            <select id="booking_time" formControlName="booking_time" class="form-control" required>
+                                <option value="">Selecione um horário</option>
+                                <option *ngFor="let time of availableTimes" [value]="time">
+                                    {{time}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes" class="sr-only">Observações (opcional)</label>
+                        <textarea id="notes" formControlName="notes" class="form-control" rows="3"
+                            placeholder="Alguma observação especial?"></textarea>
+                    </div>
+
+                    <!-- <a href="/agendamento" class="btn book-now-btn">Agendar Agora!</a> -->
+                    <button type="submit" class="btn book-service-btn" [disabled]="!bookingForm.valid || isLoading">
+                        {{isLoading ? 'Agendando...' : 'Agendar Serviço'}}
+                    </button>
+                </form>
+
+                <div *ngIf="successMessage" class="alert alert-success">
+                    {{successMessage}}
+                </div>
+
+                <div *ngIf="errorMessage" class="alert alert-error">
+                    {{errorMessage}}
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="image-container">
+                <img src="/haircut.jpg " alt="Corte de cabelo">
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <header class="header">
+        <h1>Salão Bella Mulher</h1>
+        <p>Agende seu serviço conosco</p>
+    </header>
+    <div class="admin-link">
+        <a href="/admin" class="btn btn-secondary">Área Administrativa</a>
+    </div>
+-->
+</div>

@@ -1,0 +1,82 @@
+.first-access {
+    font-family: Arial, sans-serif;
+    color: var(--color-dark-400);
+    // border: 3px solid green;
+    max-width: 800px;
+    margin-inline: auto;
+    // box-shadow: 0 0 4rem 0 var(--color-primary);
+    // padding: 2rem;
+
+    h1, h2 {
+        width: clamp(200px, 50vw, 400px);
+        margin-inline: auto;
+        margin-bottom: 2rem;
+        color: var(--color-primary);
+    }
+
+    p {
+        width: 100%;
+        max-width: 500px;
+        margin-inline: auto;
+    }
+
+    input {
+        max-width: 400px;
+    }
+    
+    #masterKeyInput {
+        margin-block: 1rem;
+        margin-block: 1rem;
+    }
+
+}
+
+
+.fade-in-anim {
+    animation: fadeIn 1s ease-in-out forwards;
+    /* Nome da animação, duração, tipo de suavização */
+    opacity: 0;
+    /* Começa transparente */
+}
+
+.greeting-anim {
+    animation: greetingAnimation 3.5s ease-in-out;
+    opacity: 0;
+}
+
+.fade-out-anim {
+    animation: fadeOut 1s ease-in-out forwards;
+    /* Nome da animação, duração, tipo de suavização */
+    opacity: 1;
+    /* Começa transparente */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes greetingAnimation {
+    0%, 100% {
+        opacity: 0;
+    }
+
+    20%, 80% {
+        opacity: 1;
+    }
+}

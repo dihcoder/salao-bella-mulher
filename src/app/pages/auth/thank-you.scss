@@ -1,0 +1,35 @@
+
+
+.access-key-input.fade-in-anim {
+    animation: fadeIn 1s ease-in-out forwards;
+    /* Nome da animação, duração, tipo de suavização */
+    opacity: 0;
+    /* Começa transparente */
+}
+
+.access-key-input.fade-out-anim {
+    animation: fadeOut 1s ease-in-out forwards;
+    /* Nome da animação, duração, tipo de suavização */
+    opacity: 1;
+    /* Começa transparente */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

@@ -38,7 +38,7 @@
         justify-content: center;
         gap: 20px;
 
-        li {
+        li a {
             color: var(--color-dark-400);
             padding: 5px;
             display: inline-block;
@@ -63,7 +63,7 @@
     .social-media-links {
         display: flex;
         justify-content: space-between;
-        gap: 10px;
+        gap: 14px;
         position: absolute;
         right: 0;
         top: 50%;
@@ -72,7 +72,7 @@
         svg {
             fill: var(--color-dark-400);
             transition: 200ms ease-in-out;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
 
             &:hover {
                 fill: var(--color-primary);
@@ -116,7 +116,7 @@
 }
 
 
-@media screen and (max-width: 940px) {
+@media screen and (max-width: 1120px) { // max-width: 940px
 
     .site-header {
         position: fixed;
@@ -133,7 +133,7 @@
         }
 
         .nav-menu {
-            --nav-menu-width: clamp(200px, 50vw, 300px);
+            --nav-menu-width: clamp(250px, 50vw, 400px);
             position: fixed;
             top: 60px;
             left: calc(calc(var(--nav-menu-width) + 10px + 100vw));

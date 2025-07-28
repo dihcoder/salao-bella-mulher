@@ -9,12 +9,28 @@
 
         <nav aria-label="Navegação Principal">
             <ul class="nav-menu">
-                <li class="active" data-section="home" aria-current="page">INÍCIO</li>
-                <li data-section="services">SERVIÇOS</li>
-                <li data-section="about">SOBRE</li>
-                <li data-section="team">EQUIPE</li>
-                <li data-section="booking">AGENDAMENTO</li>
-                <li data-section="contact">CONTATO</li>
+                <li>
+                    <a [routerLink]="['']" fragment="inicio" [class.active]="isFragmentActive('inicio')" aria-current="page">INÍCIO</a>
+                </li>
+                <li>
+                    <a [routerLink]="['inicio']" fragment="sobre" [class.active]="isFragmentActive('sobre')" aria-current="page">SOBRE</a>
+                </li>
+                <li>
+                    <a [routerLink]="['inicio']" fragment="servicos" [class.active]="isFragmentActive('servicos')" aria-current="page">SERVIÇOS</a>
+                </li>
+                <!-- <li>
+                    <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">EQUIPE</a>
+                </li> -->
+                <li>
+                    <a [routerLink]="['/agendamento']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">AGENDAMENTO</a>
+                </li>
+                <!-- <li>
+                    <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">CONTATO</a>
+                </li> -->
+                <li>
+                    <a [routerLink]="['/admin']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">ADMINISTRAÇÃO</a>
+                </li>
             </ul>
             <button class="menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu de navegação">
                 <span class="hamburger"></span>
