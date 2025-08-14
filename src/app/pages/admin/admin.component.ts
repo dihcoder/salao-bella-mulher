@@ -20,7 +20,7 @@ export class AdminComponent implements OnInit {
     selectedDate = '';
     statusFilter = '';
 
-    isAuthenticated = true;
+    isAuthenticated = false;
 
     constructor(private bookingService: BookingService, private router: Router) { }
 

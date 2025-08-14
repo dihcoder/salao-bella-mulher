@@ -15,11 +15,8 @@
             class="master-key-container fade-in-anim">
             <h2>Vamos Começar!</h2>
             <p>Para ativar seu acesso como administrador, <strong>insira a chave mestra que você recebeu</strong>.</p>
-            <div *ngIf="successMessage" class="alert alert-success">
-                {{successMessage}}
-            </div>
-            <div *ngIf="errorMessage" class="alert alert-error">
-                {{errorMessage}}
+            <div *ngIf="message" [ngClass]="'alert ' + message.type">
+                {{message.text}}
             </div>
             <form [formGroup]="masterKeyForm" (ngSubmit)="onMasterKeySubmit()">
                 <div class="form-group master-key-input">
@@ -39,8 +36,7 @@
     @if (state === 'register-admin') {
     <div class="first-access fade-in-anim">
         <h2>Cadastro de Administrador</h2>
-        <p>Agora, vamos cadastrar você como administrador do site.</p>
-        <p>Preencha os campos abaixo com seu nome completo, email e uma senha de sua preferência.</p>
+        <p>Agora, vamos cadastrar você como administrador do site. Preencha os campos abaixo com seu nome completo, email e uma senha de sua preferência.</p>
 
         <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit()">
             <div class="form-group">
@@ -61,6 +57,9 @@
                 <label for="confirmPassword" class="sr-only">Confirmar senha</label>
                 <input formControlName="confirm_password" placeholder="Repita a senha" id="confirmPassword"
                     type="password" class="form-control">
+            </div>
+            <div *ngIf="message" [ngClass]="'alert ' + message.type">
+                {{message.text}}
             </div>
             <button type="submit" class="btn continue-btn" [disabled]="!registerForm.valid">
                 Cadastrar

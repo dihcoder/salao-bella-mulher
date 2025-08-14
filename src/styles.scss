@@ -43,3 +43,32 @@
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+.btn {
+    display: block;
+    text-decoration: none;
+    z-index: 1;
+    margin-inline: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding: 20px 40px;
+    border-radius: 0;
+    color: var(--color-light-100);
+    background-color: black;
+}
+
+.btn:disabled {
+    background-color: var(--color-dark-600);
+    cursor: not-allowed;
+}
+
+.btn:not([disabled]) {
+    transition: background-color 200ms ease-out;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-primary);
+        color: var(--color-dark-100);
+    }
+
+}

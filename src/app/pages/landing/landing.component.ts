@@ -6,10 +6,12 @@ import { TestimonialSectionComponent } from '../../features/testimonial-section/
 import { VideoHighlightComponent } from '../../features/video-highlight/video-highlight.component';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
 	selector: 'app-landing',
-	imports: [HeroComponent, OpeningHoursComponent, FeaturedServicesComponent, TestimonialSectionComponent, VideoHighlightComponent],
+	imports: [HeroComponent, OpeningHoursComponent, FeaturedServicesComponent, TestimonialSectionComponent, VideoHighlightComponent, HeaderComponent, FooterComponent],
 	templateUrl: './landing.component.html',
 	styleUrl: './landing.component.scss'
 })

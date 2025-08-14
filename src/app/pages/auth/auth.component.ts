@@ -4,6 +4,11 @@ import { LoginService } from '../../core/services/login.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
+type Message = {
+	type: 'alert-warning' | 'alert-success' | 'alert-error';
+	text: string;
+}
+
 @Component({
 	selector: 'app-auth',
 	imports: [CommonModule, FormsModule, ReactiveFormsModule],
@@ -16,12 +21,11 @@ export class LoginComponent {
 	registerForm: FormGroup;
 
 	isFirstAccess = true;
-	successMessage: null | string = null;
-	errorMessage: null | string = null;
+	isWeakPasswordWarningVisible = false;
 
+	message: Message | null = null;
 
 	state: 'greeting-user' | 'fill-master-key' | 'fill-master-key--out' | 'register-admin' | 'login' = 'greeting-user';
-
 
 
 	isAccessKeyValid = false;
@@ -76,36 +80,64 @@ export class LoginComponent {
 		}
 	}
 
+	clearMessageTimeout(milliseconds: number) {
+		setTimeout(() => this.message = null, milliseconds);
+	}
+
 	onMasterKeySubmit() {
 		const MASTER_KEY_IS_CORRECT = this.masterKeyForm.value.master_key === this.HARD_CODED_MASTER_KEY;
 
 		if (MASTER_KEY_IS_CORRECT) {
-			this.successMessage = "Muito bem! Vamos para a próxima etapa.";
-			this.errorMessage = null;
+			this.message = { type: 'alert-success', text: 'Muito bem! Vamos para a próxima etapa.' }
+
 		} else {
-			this.successMessage = null;
-			this.errorMessage = "Chave mestra incorreta! Tente de novo.";
+			this.message = { type: 'alert-error', text: 'Chave mestra incorreta! Tente de novo.' }
 		}
 
 		setTimeout(() => {
-			this.errorMessage = null;
+			if (this.message?.type === 'alert-error') this.message = null;
 
 			if (MASTER_KEY_IS_CORRECT) {
 				this.state = 'fill-master-key--out';
 
 				setTimeout(() => {
-					this.successMessage = null
+					this.message = null;
 					this.state = 'register-admin';
 				}, 1500)
 			}
-		}, this.successMessage ? 3500 : 4500);
+		}, this.message.type === 'alert-success' ? 2000 : 4500);
 	}
 
 	onRegisterFormSubmit() {
-		
+		if (this.registerForm.value.password.length < 8) {
+			this.message = { type: 'alert-error', text: 'A senha precisa ter no mínimo 8 caracteres.' };
+			this.clearMessageTimeout(4000);
+			return
+		}
+
+		if (this.registerForm.value.password !== this.registerForm.value.confirm_password) {
+			this.message = { type: 'alert-error', text: 'As senhas precisam ser iguais.' };
+			this.clearMessageTimeout(4000);
+			return
+		}
+
+		if (!this.isWeakPasswordWarningVisible
+			&& !this.SECURE_PASSWD_PATTERN.test(this.registerForm.value.password)) {
+
+			this.message = { type: 'alert-warning', text: 'Sua senha está fraca! Você pode usar letras maiúsculas e minúsculas, números e caracteres especiais para torná-la forte. Se deseja continuar assim mesmo, clique no botão abaixo novamente.' };
+			this.isWeakPasswordWarningVisible = true;
+			return
+		}
+
+
+		this.message = null;
+		console.log('DADOS SUBMETIDOS!', this.registerForm.value)
+		this.isWeakPasswordWarningVisible = true;
+
+
 	}
 
-	onLoginFormSubmit() {}
+	onLoginFormSubmit() { }
 
 	// checkAccesKeyValue() {
 	// 	this.acessKeyValue = this.acessKeyValue.trim().slice(0, this.ACCESS_KEY_LENGTH);
@@ -142,30 +174,30 @@ export class LoginComponent {
 
 	//onSubmit() {
 
-		// if (this.authForm.valid) {
-		// 	this.isLoading = true;
-		// 	this.successMessage = '';
-		// 	this.errorMessage = '';
+	// if (this.authForm.valid) {
+	// 	this.isLoading = true;
+	// 	this.successMessage = '';
+	// 	this.errorMessage = '';
 
-		// 	const booking = {
-		// 		...this.authForm.value,
-		// 		status: 'pending' as const
-		// 	};
+	// 	const booking = {
+	// 		...this.authForm.value,
+	// 		status: 'pending' as const
+	// 	};
 
-		// 	console.log(booking);
-		// 	this.loginService.login(booking).subscribe({
-		// 		next: (result) => {
-		// 			this.isLoading = false;
-		// 			this.successMessage = 'Agendamento realizado com sucesso! Entraremos em contato para confirmar.';
-		// 			this.authForm.reset();
-		// 		},
-		// 		error: (error) => {
-		// 			this.isLoading = false;
-		// 			console.error('Erro ao criar agendamento:', error);
-		// 			this.errorMessage = 'Erro ao realizar agendamento. Tente novamente.';
-		// 		}
-		// 	});
-		// }
+	// 	console.log(booking);
+	// 	this.loginService.login(booking).subscribe({
+	// 		next: (result) => {
+	// 			this.isLoading = false;
+	// 			this.successMessage = 'Agendamento realizado com sucesso! Entraremos em contato para confirmar.';
+	// 			this.authForm.reset();
+	// 		},
+	// 		error: (error) => {
+	// 			this.isLoading = false;
+	// 			console.error('Erro ao criar agendamento:', error);
+	// 			this.errorMessage = 'Erro ao realizar agendamento. Tente novamente.';
+	// 		}
+	// 	});
+	// }
 	//}
 
 	/* updateValidators() {
